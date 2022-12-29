@@ -1,0 +1,86 @@
+[gd_scene load_steps=7 format=3 uid="uid://ckr7hlpl0onrp"]
+
+[ext_resource type="PackedScene" uid="uid://n731ge80bysy" path="res://guy.tscn" id="1_kemmr"]
+[ext_resource type="PackedScene" uid="uid://cp3dbsbqjox2o" path="res://platform.tscn" id="2_inwr8"]
+[ext_resource type="Curve2D" uid="uid://cmejy2o7aqmc7" path="res://platform_path_default.tres" id="3_5p8mm"]
+[ext_resource type="Curve2D" uid="uid://b2u3s14vitdtb" path="res://platform_path_2x.tres" id="3_w6il5"]
+[ext_resource type="PackedScene" uid="uid://cnfci8basp7ip" path="res://platform_static.tscn" id="5_np1cw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_64cfo"]
+size = Vector2(968, 20)
+
+[node name="Main" type="Node"]
+
+[node name="Guy" parent="." instance=ExtResource("1_kemmr")]
+position = Vector2(64, 292)
+
+[node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2(177.5, 337)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+position = Vector2(322.5, 0)
+shape = SubResource("RectangleShape2D_64cfo")
+
+[node name="Platform" parent="." instance=ExtResource("2_inwr8")]
+position = Vector2(146, 314)
+
+[node name="Path2D" parent="Platform" index="1"]
+curve = ExtResource("3_5p8mm")
+
+[node name="PathFollow2D" parent="Platform/Path2D" index="0"]
+position = Vector2(0, -64)
+progress = 64.0
+
+[node name="CharacterBody2D" parent="Platform" index="2"]
+position = Vector2(0, -64)
+
+[node name="Platform2" parent="." instance=ExtResource("2_inwr8")]
+position = Vector2(183, 314)
+
+[node name="Path2D" parent="Platform2" index="1"]
+curve = ExtResource("3_w6il5")
+
+[node name="PathFollow2D" parent="Platform2/Path2D" index="0"]
+position = Vector2(0, -128)
+progress = 128.0
+
+[node name="CharacterBody2D" parent="Platform2" index="2"]
+position = Vector2(0, -128)
+
+[node name="Platform3" parent="." instance=ExtResource("2_inwr8")]
+position = Vector2(219, 314)
+
+[node name="Platform4" parent="." instance=ExtResource("5_np1cw")]
+position = Vector2(267, 314)
+
+[node name="Platform5" parent="." instance=ExtResource("5_np1cw")]
+position = Vector2(315, 314)
+
+[node name="Path2D" parent="Platform5" index="1"]
+curve = ExtResource("3_w6il5")
+
+[node name="PathFollow2D" parent="Platform5/Path2D" index="0"]
+position = Vector2(0, -128)
+progress = 128.0
+
+[node name="CharacterBody2D" parent="Platform5" index="2"]
+position = Vector2(0, -128)
+
+[node name="Platform6" parent="." instance=ExtResource("5_np1cw")]
+position = Vector2(359, 314)
+
+[node name="Path2D" parent="Platform6" index="1"]
+curve = ExtResource("3_5p8mm")
+
+[node name="PathFollow2D" parent="Platform6/Path2D" index="0"]
+position = Vector2(0, -64)
+progress = 64.0
+
+[node name="CharacterBody2D" parent="Platform6" index="2"]
+position = Vector2(0, -64)
+
+[editable path="Platform"]
+[editable path="Platform2"]
+[editable path="Platform3"]
+[editable path="Platform5"]
+[editable path="Platform6"]
